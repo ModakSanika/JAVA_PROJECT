@@ -20,6 +20,7 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    
     @GetMapping
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
