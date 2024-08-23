@@ -20,7 +20,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
-    
     @GetMapping
     public List<Student> getAllStudents() {
         return studentService.getAllStudents();
@@ -44,7 +43,6 @@ public class StudentController {
     @PutMapping("/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable Long id, @RequestBody Student studentDetails) {
         Student existingStudent = studentService.getStudentById(id);
-        
         if (existingStudent == null) {
             return ResponseEntity.notFound().build();
         }
@@ -56,6 +54,7 @@ public class StudentController {
         existingStudent.setQualification(studentDetails.getQualification());
         existingStudent.setCourse(studentDetails.getCourse());
         existingStudent.setYear(studentDetails.getYear());
+        existingStudent.setCertificate(studentDetails.getCertificate());  // Update certificate
 
         // Save the updated student back to the database
         Student updatedStudent = studentService.saveStudent(existingStudent);
